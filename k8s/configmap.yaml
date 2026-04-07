@@ -1,0 +1,7 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: echo-hello-config
+  namespace: bkable
+data:
+  PERSON: "world"

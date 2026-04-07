@@ -1,0 +1,29 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: echo-hello
+  namespace: bkable
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: echo-hello
+  template:
+    metadata:
+      labels:
+        app: echo-hello
+    spec:
+      containers:
+        - name: echo-hello
+          image: ghcr.io/spinguard/echo-hello:0.0.1 # {"$imagepolicy": "flux-system:echo-hello"}
+          ports:
+            - containerPort: 3000
+          envFrom:
+            - configMapRef:
+                name: echo-hello-config
+          readinessProbe:
+            httpGet:
+              path: /echo-hello
+              port: 3000
+            initialDelaySeconds: 5
+            periodSeconds: 10

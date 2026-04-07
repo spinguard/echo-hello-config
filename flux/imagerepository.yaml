@@ -1,0 +1,16 @@
+apiVersion: image.toolkit.fluxcd.io/v1beta2
+kind: ImageRepository
+metadata:
+  name: echo-hello
+  namespace: tanzu-source-controller
+spec:
+  image: ghcr.io/spinguard/echo-hello
+  interval: 1m
+  # For private GHCR packages, create a secret first:
+  # kubectl create secret docker-registry ghcr-auth \
+  #   --docker-server=ghcr.io \
+  #   --docker-username=<github-user> \
+  #   --docker-password=<github-pat> \
+  #   -n flux-system
+  secretRef:
+    name: ghcr-auth

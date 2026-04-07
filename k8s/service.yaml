@@ -1,0 +1,12 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: echo-hello
+  namespace: bkable
+spec:
+  selector:
+    app: echo-hello
+  ports:
+    - port: 80
+      targetPort: 3000
+  type: ClusterIP

@@ -1,0 +1,18 @@
+apiVersion: source.toolkit.fluxcd.io/v1
+kind: GitRepository
+metadata:
+  name: echo-hello-config
+  namespace: tanzu-source-controller
+spec:
+  interval: 1m
+  url: https://github.com/spinguard/echo-hello-config
+  ref:
+    branch: main
+  # Required: repo is private AND ImageUpdateAutomation needs write access to push tag updates.
+  # Create the secret before applying this manifest:
+  #   kubectl create secret generic github-token \
+  #     --from-literal=username=<github-user> \
+  #     --from-literal=password=<github-pat> \
+  #     -n flux-system
+  secretRef:
+    name: github-token
