@@ -13,6 +13,11 @@ spec:
       labels:
         app: echo-hello
     spec:
+      securityContext:
+        runAsNonRoot: true
+        runAsUser: 1000
+        runAsGroup: 1000
+        fsGroup: 1000
       containers:
         - name: echo-hello
           image: ghcr.io/spinguard/echo-hello:0.0.1 # {"$imagepolicy": "flux-system:echo-hello"}
@@ -21,6 +26,12 @@ spec:
           envFrom:
             - configMapRef:
                 name: echo-hello-config
+          securityContext:
+            allowPrivilegeEscalation: false
+            readOnlyRootFilesystem: true
+            capabilities:
+              drop:
+                - ALL
           readinessProbe:
             httpGet:
               path: /echo-hello
