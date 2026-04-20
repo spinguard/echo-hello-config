@@ -5,4 +5,6 @@ metadata:
   namespace: bkable
 data:
   PERSON: "world"
-  RESPONSE_LATENCY: "100"
+  RESPONSE_LATENCY_MIN: "50"
+  RESPONSE_LATENCY_MAX: "150"
+  LOG_LEVEL: "info"
