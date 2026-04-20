@@ -7,4 +7,4 @@ data:
   PERSON: "world"
   RESPONSE_LATENCY_MIN: "50"
   RESPONSE_LATENCY_MAX: "150"
-  LOG_LEVEL: "info"
+  LOG_LEVEL: "debug"
