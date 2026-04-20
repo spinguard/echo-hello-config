@@ -1,0 +1,17 @@
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  name: echo-hello
+  namespace: bkable
+spec:
+  ingressClassName: contour
+  rules:
+    - http:
+        paths:
+          - path: /echo-hello
+            pathType: Prefix
+            backend:
+              service:
+                name: echo-hello
+                port:
+                  number: 80

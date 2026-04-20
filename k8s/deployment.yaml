@@ -13,10 +13,9 @@ spec:
       labels:
         app: echo-hello
     spec:
-      imagePullSecrets:
-        - name: ghcr-auth
+      # imagePullSecrets:
+      #   - name: ghcr-auth
       securityContext:
-        allowPrivilegeEscalation: false
         seccompProfile:
           type: RuntimeDefault
         runAsNonRoot: true
