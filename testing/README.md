@@ -23,6 +23,18 @@ sudo apt-get update && sudo apt-get install k6
 brew install k6
 ```
 
+**Windows (winget):**
+```powershell
+winget install k6 --source winget
+```
+
+**Windows (Chocolatey):**
+```powershell
+choco install k6
+```
+
+**Windows (MSI installer):** Download the latest `.msi` from the [k6 releases page](https://github.com/grafana/k6/releases) and run the installer. After installation, open a new terminal to pick up the updated `PATH`.
+
 Verify the installation:
 ```bash
 k6 version
@@ -37,6 +49,20 @@ kubectl get ingress echo-hello -n bkable
 ```
 
 Note the `ADDRESS` column value — that is your `TARGET_URL` host.
+
+> **If `ADDRESS` is empty**, the Envoy LoadBalancer service has not been assigned an external IP. This is a cluster infrastructure issue. See [TROUBLESHOOTING-LOADBALANCING.md](../TROUBLESHOOTING-LOADBALANCING.md) for root cause and resolution.
+>
+> As a dev workaround, use port-forward to bypass node networking and run k6 against localhost:
+>
+> ```bash
+> # Terminal 1 — keep running
+> kubectl port-forward svc/envoy 8080:80 -n tanzu-system-ingress
+>
+> # Terminal 2 — run k6 with localhost as the target
+> k6 run -e TARGET_URL=http://localhost:8080 testing/load-test.js
+> ```
+>
+> Note: port-forward tunnels through the Kubernetes API server and adds latency overhead — results will not be representative of real traffic performance.
 
 ## Running the Test
 

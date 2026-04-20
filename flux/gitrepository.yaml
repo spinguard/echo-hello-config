@@ -2,7 +2,7 @@ apiVersion: source.toolkit.fluxcd.io/v1beta2
 kind: GitRepository
 metadata:
   name: echo-hello-config
-  namespace: tanzu-source-controller
+  namespace: flux-system
 spec:
   interval: 1m
   url: https://github.com/spinguard/echo-hello-config

@@ -4,7 +4,7 @@ metadata:
   name: echo-hello
   namespace: bkable
 spec:
-  replicas: 1
+  replicas: 2
   selector:
     matchLabels:
       app: echo-hello
